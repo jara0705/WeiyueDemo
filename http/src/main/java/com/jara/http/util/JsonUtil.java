@@ -27,7 +27,7 @@ public class JsonUtil {
         return JSON.parseArray(json, clazz);
     }
 
-    public static Map StringToCollect(String json) {
+    public static Map stringToCollect(String json) {
         return JSONObject.parseObject(json);
     }
 

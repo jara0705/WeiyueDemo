@@ -11,9 +11,9 @@ import com.jara.library.util.Utils;
 
 public class BaseApplication extends Application {
 
-    private static BaseApplication instance;
+    public static BaseApplication instance;
 
-    private BaseApplication() {}
+    public BaseApplication() {}
 
     public static BaseApplication getInstance() {
         if (instance == null) {
