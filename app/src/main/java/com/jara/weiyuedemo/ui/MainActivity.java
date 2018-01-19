@@ -16,6 +16,9 @@ import com.jara.weiyuedemo.MyApp;
 import com.jara.weiyuedemo.R;
 import com.jara.weiyuedemo.ui.behavior.BottomNavigationViewHelper;
 import com.jara.weiyuedemo.ui.home.HomeFragment;
+import com.jara.weiyuedemo.ui.picture.PictureFragment;
+import com.jara.weiyuedemo.ui.user.UserFragment;
+import com.jara.weiyuedemo.ui.video.VideoFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,7 +50,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initTitle() {
-        title = new TitleView(activity, findViewById(R.id.toolBar));
+        title = new TitleView(activity, findViewById(R.id.toolbar));
         title.setTitleText("文章");
     }
 
@@ -70,14 +73,17 @@ public class MainActivity extends BaseActivity {
                     case R.id.itemVideo:
                         title.setTitleText("视频");
                         JCVideoPlayer.releaseAllVideos();
+                        fragmentHandler.addOrShowFragment(flContent, Constants.VIDEO_FRAGMENT, new VideoFragment());
                         break;
                     case R.id.itemPicture:
                         title.setTitleText("美图");
                         JCVideoPlayer.releaseAllVideos();
+                        fragmentHandler.addOrShowFragment(flContent, Constants.PICTURE_FRAGMENT, new PictureFragment());
                         break;
                     case R.id.itemUser:
-                        title.setTitleText("");
+                        title.setTitleText("我");
                         JCVideoPlayer.releaseAllVideos();
+                        fragmentHandler.addOrShowFragment(flContent, Constants.USER_FRAGMENT, new UserFragment());
                         break;
                 }
                 return true;

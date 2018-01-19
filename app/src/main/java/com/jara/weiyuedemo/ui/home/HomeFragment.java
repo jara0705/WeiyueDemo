@@ -65,12 +65,12 @@ public class HomeFragment extends BaseFragment {
 
     }
 
-//    @Subscribe(threadMode = ThreadMode.MAIN)
-//    public void onEvent(ChannelEvent event){
-//        if (event.code== BaseEvent.code_refresh){
-//            initInstance();
-//        }
-//    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(ChannelEvent event){
+        if (event.code== BaseEvent.code_refresh){
+            initInstance();
+        }
+    }
 
     @OnClick(R.id.ivAdd)
     public void onClick() {
