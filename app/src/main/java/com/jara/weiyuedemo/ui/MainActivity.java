@@ -1,6 +1,8 @@
 package com.jara.weiyuedemo.ui;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,11 +11,14 @@ import android.widget.FrameLayout;
 import com.jara.library.handler.FragmentHandler;
 import com.jara.library.ui.BaseActivity;
 import com.jara.library.ui.TitleView;
+import com.jara.weiyuedemo.Constants;
 import com.jara.weiyuedemo.MyApp;
 import com.jara.weiyuedemo.R;
 import com.jara.weiyuedemo.ui.behavior.BottomNavigationViewHelper;
+import com.jara.weiyuedemo.ui.home.HomeFragment;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 /**
@@ -31,6 +36,11 @@ public class MainActivity extends BaseActivity {
     private TitleView title;
 
     @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     protected int setContentViewResId() {
         return R.layout.activity_main;
     }
@@ -46,6 +56,7 @@ public class MainActivity extends BaseActivity {
         initThreadHelper();
         fragmentHandler = new FragmentHandler(activity, getSupportFragmentManager());
         if (flContent != null) {
+            fragmentHandler.addOrShowFragment(flContent, Constants.HOME_FRAGMENT, new HomeFragment());
         }
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -54,6 +65,7 @@ public class MainActivity extends BaseActivity {
                     case R.id.itemHome:
                         title.setTitleText("文章");
                         JCVideoPlayer.releaseAllVideos();
+                        fragmentHandler.addOrShowFragment(flContent, Constants.HOME_FRAGMENT, new HomeFragment());
                         break;
                     case R.id.itemVideo:
                         title.setTitleText("视频");
@@ -68,7 +80,7 @@ public class MainActivity extends BaseActivity {
                         JCVideoPlayer.releaseAllVideos();
                         break;
                 }
-                return false;
+                return true;
             }
         });
         if (prevMenuItem != null) {
